@@ -1,5 +1,11 @@
 // This page is known as Home page.
 
+import HomePage from "@/components/HomePage";
+
 export default function Home() {
-  return <div className="text-green-700 text-center font-bold text-4xl"></div>;
+  return (
+    <div>
+      <HomePage></HomePage>
+    </div>
+  );
 }
