@@ -1,21 +1,16 @@
+// Here is the main part of the web application. Everything will be rendared form here
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Hind_Siliguri } from "next/font/google";
+import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import NavLinks from "@/components/NavLinks";
+import Marquee from "@/components/Marquee";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,7 +24,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={` ${hindSiliguri.className} h-full antialiased`}
     >
-      <body className=" min-h-full flex flex-col">{children}</body>
+      <body className=" min-h-full flex flex-col">
+        <Header>
+          <NavLinks />
+        </Header>
+        <Marquee></Marquee>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
