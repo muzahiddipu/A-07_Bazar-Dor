@@ -3,15 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-interface Category {
-  id: string;
-  slug: string;
-  nameBn: string;
-  icon: string;
-}
-
-const API_URL = "https://api.abcz.workers.dev/api/bazardor/categories";
+import {
+  BAZARDOR_API_URL,
+  isCategory,
+  type Category,
+} from "@/lib/bazardor-types";
 
 const NavLinks = () => {
   const pathname = usePathname();
@@ -23,7 +19,7 @@ const NavLinks = () => {
 
     async function fetchCategories() {
       try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${BAZARDOR_API_URL}/categories`, {
           signal: controller.signal,
         });
 
@@ -37,15 +33,7 @@ const NavLinks = () => {
           throw new Error("Invalid category API response");
         }
 
-        const validCategories = data.filter(
-          (item): item is Category =>
-            item !== null &&
-            typeof item === "object" &&
-            typeof item.id === "string" &&
-            typeof item.slug === "string" &&
-            typeof item.nameBn === "string" &&
-            typeof item.icon === "string",
-        );
+        const validCategories = data.filter(isCategory);
 
         setCategories(validCategories);
       } catch (error) {
@@ -83,7 +71,7 @@ const NavLinks = () => {
             ) : categories.length > 0 ? (
               categories.map((nav) => {
                 const slug = nav.slug.trim();
-                const href = slug.startsWith("/") ? slug : `/${slug}`;
+                const href = `/category/${encodeURIComponent(slug)}`;
 
                 const isActive =
                   pathname === href ||
@@ -119,7 +107,6 @@ const NavLinks = () => {
           </div>
         </div>
       </div>
-
     </nav>
   );
 };
