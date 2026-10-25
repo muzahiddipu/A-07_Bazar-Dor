@@ -1,4 +1,4 @@
-import { Minus, TrendingDown, TrendingUp } from "lucide-react";
+import { ArrowDown, ArrowUp, Minus } from "lucide-react";
 import Link from "next/link";
 import type { Product } from "@/lib/bazardor-types";
 
@@ -15,17 +15,18 @@ const formatBengaliNumber = new Intl.NumberFormat("bn-BD", {
   maximumFractionDigits: 2,
 });
 
+// Shared clickable product card used by the catalog and price-trend sections.
 const ProductCard = ({ product }: { product: Product }) => {
   const changeStyles = {
     up: {
       badge: "bg-red-50 text-red-700 ring-red-100",
       label: "দাম বেড়েছে",
-      TrendIcon: TrendingUp,
+      TrendIcon: ArrowUp,
     },
     down: {
       badge: "bg-green-50 text-green-700 ring-green-100",
       label: "দাম কমেছে",
-      TrendIcon: TrendingDown,
+      TrendIcon: ArrowDown,
     },
     flat: {
       badge: "bg-gray-100 text-gray-600 ring-gray-200",
@@ -41,7 +42,8 @@ const ProductCard = ({ product }: { product: Product }) => {
       aria-label={`${product.nameBn}, বিস্তারিত দেখুন`}
       className="block rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
     >
-      <article className="group flex h-full min-w-0 flex-col rounded-2xl border border-gray-100 bg-white p-4 shadow-sm shadow-gray-900/5 transition duration-200 hover:-translate-y-0.5 hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 sm:p-5">
+      <article className="group flex h-full min-w-0 flex-col rounded-2xl border border-gray-100 bg-white p-4 shadow-sm shadow-gray-900/5 transition duration-200 hover:-translate-y-0.5 hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 motion-reduce:transition-none motion-reduce:hover:transform-none sm:p-5">
+        {/* Product image, name, and unit */}
         <div className="flex items-center gap-3">
           <div
             aria-hidden="true"
@@ -59,6 +61,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           </div>
         </div>
 
+        {/* Current price and consistent direction icon/badge */}
         <div className="mt-4 flex flex-1 items-end justify-between gap-2 border-t border-gray-100 pt-4">
           <div className="min-w-0">
             <p className="text-xs font-medium text-gray-500 sm:text-sm">

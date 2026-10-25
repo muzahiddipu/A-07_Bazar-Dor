@@ -9,6 +9,7 @@ import {
   type Category,
 } from "@/lib/bazardor-types";
 
+// Loads categories and renders the horizontally scrollable route navigation.
 const NavLinks = () => {
   const pathname = usePathname();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -55,8 +56,9 @@ const NavLinks = () => {
 
   return (
     <nav
+      id="category-navigation"
       aria-label="পণ্যের নেভিগেশন"
-      className="relative border-b border-green-100 bg-white"
+      className="relative scroll-mt-40 border-b border-green-100 bg-white"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="flex h-12 items-center sm:h-14">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+// Helpful fallback for missing or invalid product IDs.
 export default function ProductNotFound() {
   return (
     <section className="mx-auto flex min-h-[50vh] w-full max-w-7xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">

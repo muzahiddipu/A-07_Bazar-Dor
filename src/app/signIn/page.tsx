@@ -1,18 +1,19 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
+import type { FormEvent } from "react";
 import { ArrowLeft, ArrowRight, LockKeyhole, Mail } from "lucide-react";
 
+// Sign-in form UI; wire handleSubmit to the authentication provider as needed.
 const SignInPage = () => {
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Connect your authentication logic here.
   };
 
   return (
-    <main className="min-h-screen bg-[#f1f5ef] px-4 py-10 sm:px-6 sm:py-14">
+    <section className="min-h-screen bg-[#f1f5ef] px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto w-full max-w-2xl">
         {/* Heading */}
         <header className="mb-8 text-center sm:mb-10">
@@ -173,7 +174,7 @@ const SignInPage = () => {
           <p className="mt-7 text-center text-sm text-[#39453b] sm:text-base">
             অ্যাকাউন্ট নেই?{" "}
             <Link
-              href="/signup"
+              href="/signUp"
               className="font-semibold text-emerald-700 transition hover:text-emerald-900 hover:underline"
             >
               সাইন আপ করুন
@@ -195,7 +196,7 @@ const SignInPage = () => {
           </Link>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

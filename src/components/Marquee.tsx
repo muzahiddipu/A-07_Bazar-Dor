@@ -4,12 +4,14 @@ export interface Product {
   id: string | number;
   categoryIcon: string;
   nameBn: string;
+  unit: string;
   today: number;
   change: {
     pct: number;
   };
 }
 
+// Fetches current product prices and renders the shared market ticker.
 const Marquee = async () => {
   const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
 
@@ -24,6 +26,7 @@ const Marquee = async () => {
       aria-label="আজকের বাজারদর"
       className="relative isolate border-b border-emerald-100/80 bg-white"
     >
+      {/* Fixed ticker label beside the moving product prices */}
       <div className="flex min-h-12 items-stretch sm:min-h-14">
         <div className="relative z-20 flex shrink-0 items-center gap-1.5 bg-emerald-800 px-2.5 text-white sm:gap-2.5 sm:px-5">
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white/10 text-sm font-bold sm:h-8 sm:w-8 sm:rounded-lg sm:text-base">

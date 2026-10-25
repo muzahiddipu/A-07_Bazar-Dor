@@ -1,10 +1,9 @@
-// This page is known as Home page.
-
 import AllProducts from "@/components/AllProducts";
 import HomePage from "@/components/HomePage";
 import PriceDecreased from "@/components/PriceDecreased";
 import PriceIncreased from "@/components/PriceIncreased";
 
+// Homepage composition: introduction, price trends, and the full catalog.
 export default function Home() {
   return (
     <div>

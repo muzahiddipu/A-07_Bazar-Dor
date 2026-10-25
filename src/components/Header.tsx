@@ -11,6 +11,7 @@ import {
   CalendarDays,
 } from "lucide-react";
 
+// Sticky brand, authentication actions, and the category navigation slot.
 const Header = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -41,9 +42,9 @@ const Header = ({ children }: { children: ReactNode }) => {
 
             {/* Brand Name and Date */}
             <div className="min-w-0">
-              <h1 className="text-xl font-extrabold leading-tight tracking-tight text-green-900 transition-colors group-hover:text-green-700 sm:text-2xl md:text-3xl">
+              <span className="text-xl font-extrabold leading-tight tracking-tight text-green-900 transition-colors group-hover:text-green-700 sm:text-2xl md:text-3xl">
                 বাজার দর
-              </h1>
+              </span>
 
               {/* Date stays directly below the brand name */}
               <div className="mt-2 flex min-w-0 items-center gap-1.5">

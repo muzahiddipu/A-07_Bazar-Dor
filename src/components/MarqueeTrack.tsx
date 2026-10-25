@@ -7,6 +7,16 @@ const formatBengaliNumber = new Intl.NumberFormat("bn-BD", {
   maximumFractionDigits: 2,
 });
 
+const unitLabels: Record<string, string> = {
+  kg: "কেজি",
+  litre: "লিটার",
+  liter: "লিটার",
+  piece: "পিস",
+  pcs: "পিস",
+  dozen: "ডজন",
+};
+
+// Animates a duplicated product list to create a seamless, readable ticker.
 const MarqueeTrack = ({ products }: { products: Product[] }) => {
   return (
     <div className="relative flex min-w-0 flex-1 items-center overflow-hidden bg-white">
@@ -57,7 +67,7 @@ const MarqueeTrack = ({ products }: { products: Product[] }) => {
                       <span className="whitespace-nowrap text-xs font-bold tabular-nums text-slate-900 sm:text-base sm:font-extrabold">
                         {formatBengaliNumber.format(product.today)}
                         <span className="ml-1 text-[10px] font-medium text-slate-500 sm:text-xs">
-                          টাকা/কেজি
+                          টাকা/{unitLabels[product.unit.toLowerCase()] ?? product.unit}
                         </span>
                       </span>
 

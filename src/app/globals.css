@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* Continuous product ticker animation. */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -23,6 +24,7 @@
   }
 }
 
+/* Respect device-level reduced-motion preferences. */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;

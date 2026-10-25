@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TrendingUp } from "lucide-react";
 
+// Shared brand, pricing disclaimer, and copyright footer.
 const Footer = () => {
   return (
     <footer className="border-t border-emerald-100 bg-[#fbfdf9]">

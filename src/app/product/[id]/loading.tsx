@@ -1,6 +1,7 @@
+// Product-detail skeleton shown during server navigation.
 export default function ProductDetailsLoading() {
   return (
-    <main
+    <section
       aria-label="পণ্যের তথ্য লোড হচ্ছে"
       className="min-h-screen bg-gradient-to-b from-green-50/50 to-white"
     >
@@ -31,6 +32,6 @@ export default function ProductDetailsLoading() {
         <div className="mt-10 h-8 w-60 rounded bg-gray-100" />
         <div className="mt-5 h-72 rounded-2xl bg-white" />
       </div>
-    </main>
+    </section>
   );
 }

@@ -11,6 +11,7 @@ import {
 
 import heroImg from "../assets/bazar-hero.png";
 
+// Homepage introduction with the primary catalog and category navigation links.
 const HomePage = () => {
   const date = new Intl.DateTimeFormat("bn-BD", {
     dateStyle: "full",
@@ -94,10 +95,10 @@ const HomePage = () => {
                 </span>
               </div>
 
-              {/* Actions */}
+              {/* Catalog and category anchors target existing homepage sections */}
               <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
                 <Link
-                  href="/products"
+                  href="#all-products"
                   className="group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-xl bg-emerald-800 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-900 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 sm:min-w-48"
                 >
                   সব পণ্যের দাম দেখুন
@@ -108,10 +109,10 @@ const HomePage = () => {
                 </Link>
 
                 <Link
-                  href="/markets"
+                  href="#category-navigation"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-700 transition-colors duration-200 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700"
                 >
-                  বাজার খুঁজুন
+                  ক্যাটাগরি দেখুন
                   <ArrowDownRight aria-hidden="true" className="h-4 w-4" />
                 </Link>
               </div>
@@ -155,7 +156,7 @@ const HomePage = () => {
               </div>
 
               {/* Main image */}
-              <div className="relative z-10 w-[76%] transition-transform duration-500 ease-out hover:scale-[1.04]">
+              <div className="relative z-10 w-[76%] transition-transform duration-500 ease-out hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:transform-none">
                 <Image
                   src={heroImg}
                   alt="তাজা শাকসবজি ও নিত্যপ্রয়োজনীয় বাজারের পণ্যের চিত্র"

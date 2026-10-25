@@ -1,5 +1,6 @@
 export const BAZARDOR_API_URL = "https://api.abcz.workers.dev/api/bazardor";
 
+// Shared API shapes used by category, product, and card components.
 export interface Category {
   id: string;
   slug: string;
@@ -37,6 +38,7 @@ export interface ProductDetail extends Product {
   markets: ProductMarket[];
 }
 
+// Narrow unknown API data before it is used as a category.
 export function isCategory(value: unknown): value is Category {
   if (typeof value !== "object" || value === null) {
     return false;
@@ -52,6 +54,7 @@ export function isCategory(value: unknown): value is Category {
   );
 }
 
+// Confirm the single-product payload also contains its history and markets.
 export function isProductDetail(value: unknown): value is ProductDetail {
   if (typeof value !== "object" || value === null) {
     return false;

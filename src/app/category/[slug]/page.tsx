@@ -6,6 +6,7 @@ import {
   getProductsByCategory,
 } from "@/lib/bazardor";
 
+// Loads category metadata and its filtered products for the dynamic route.
 export default async function CategoryPage({
   params,
 }: {
@@ -18,6 +19,7 @@ export default async function CategoryPage({
   ]);
 
   if (!category) {
+    // Unknown slugs are distinct from valid categories with no products.
     return (
       <section className="mx-auto flex min-h-[50vh] w-full max-w-7xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
         <span
@@ -78,6 +80,7 @@ export default async function CategoryPage({
           </div>
         </div>
 
+        {/* Render only products whose category matches the route slug. */}
         {matchingProducts.length > 0 ? (
           <CategoryProducts products={matchingProducts} />
         ) : (
