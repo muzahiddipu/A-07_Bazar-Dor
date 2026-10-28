@@ -2,14 +2,9 @@
 
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
-import {
-  Menu,
-  X,
-  ShoppingCart,
-  LogIn,
-  UserPlus,
-  CalendarDays,
-} from "lucide-react";
+import { Menu, X, ShoppingCart, CalendarDays } from "lucide-react";
+
+import UserInfo from "./UserInfo";
 
 // Sticky brand, authentication actions, and the category navigation slot.
 const Header = ({ children }: { children: ReactNode }) => {
@@ -66,6 +61,7 @@ const Header = ({ children }: { children: ReactNode }) => {
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-green-700 shadow-sm">
                 <ShoppingCart size={19} strokeWidth={1.8} />
               </div>
+
               <div>
                 <p className="text-sm font-bold text-green-900">
                   আপনার প্রতিদিনের বাজার
@@ -78,22 +74,8 @@ const Header = ({ children }: { children: ReactNode }) => {
           </div>
 
           {/* Desktop Authentication */}
-          <div className="hidden shrink-0 items-center gap-2.5 sm:flex">
-            <Link
-              href="/signIn"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-green-200 bg-white px-4 py-2.5 text-sm font-semibold text-green-800 transition duration-200 hover:border-green-600 hover:bg-green-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
-            >
-              <LogIn size={17} />
-              সাইন ইন
-            </Link>
-
-            <Link
-              href="/signUp"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-green-900/10 transition duration-200 hover:bg-green-800 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
-            >
-              <UserPlus size={17} />
-              সাইন আপ
-            </Link>
+          <div className="hidden sm:block">
+            <UserInfo />
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -122,24 +104,9 @@ const Header = ({ children }: { children: ReactNode }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <Link
-                href="/signIn"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-xl border border-green-200 bg-white px-3 py-3 text-sm font-semibold text-green-800 transition hover:bg-green-50"
-              >
-                <LogIn size={17} />
-                সাইন ইন
-              </Link>
-
-              <Link
-                href="/signUp"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-xl bg-green-700 px-3 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
-              >
-                <UserPlus size={17} />
-                সাইন আপ
-              </Link>
+            {/* Mobile Authentication */}
+            <div onClick={() => setIsMenuOpen(false)}>
+              <UserInfo />
             </div>
           </div>
         )}
@@ -147,6 +114,7 @@ const Header = ({ children }: { children: ReactNode }) => {
 
       {/* Brand Accent */}
       <div className="h-0.5 bg-gradient-to-r from-emerald-200 via-green-600 to-emerald-300" />
+
       {children}
     </header>
   );

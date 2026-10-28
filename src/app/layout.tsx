@@ -1,5 +1,5 @@
 // Here is the main part of the web application. Everything will be rendared form here
-
+import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
@@ -27,6 +27,70 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={` ${hindSiliguri.className} h-full antialiased`}
     >
       <body className=" min-h-full flex flex-col">
+        {/* React hot toast */}
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#fbfdfb",
+              color: "#202a22",
+              border: "1px solid #dfe8df",
+              borderRadius: "16px",
+              padding: "14px 18px",
+              boxShadow: "0 8px 24px rgba(7, 136, 63, 0.10)",
+              fontSize: "14px",
+            },
+            success: {
+              iconTheme: {
+                primary: "#07883f",
+                secondary: "#ffffff",
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: "#dc2626",
+                secondary: "#ffffff",
+              },
+            },
+          }}
+        />
+
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3500,
+            style: {
+              background: "#fbfdfb",
+              color: "#202a22",
+              border: "1px solid #dfe8df",
+              borderRadius: "16px",
+              padding: "14px 18px",
+              boxShadow: "0 8px 24px rgba(7, 136, 63, 0.10)",
+              fontSize: "14px",
+            },
+            success: {
+              iconTheme: {
+                primary: "#07883f",
+                secondary: "#ffffff",
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: "#dc2626",
+                secondary: "#ffffff",
+              },
+            },
+            loading: {
+              iconTheme: {
+                primary: "#07883f",
+                secondary: "#eaf2ea",
+              },
+            },
+          }}
+        />
+
         {/* Global site navigation */}
         <Header>
           <NavLinks />
