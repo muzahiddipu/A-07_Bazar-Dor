@@ -16,7 +16,6 @@ const unitLabels: Record<string, string> = {
   dozen: "ডজন",
 };
 
-// Product details, historical price summary, and market-level comparison.
 export default async function ProductDetailsPage({
   params,
 }: {
@@ -61,7 +60,6 @@ export default async function ProductDetailsPage({
   return (
     <section className="min-h-screen bg-gradient-to-b from-green-50/50 via-white to-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-7 sm:px-6 sm:py-10 lg:px-8">
-        {/* Route breadcrumb: home, category, then current product */}
         <nav
           aria-label="ব্রেডক্রাম্ব"
           className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500 sm:mb-8"
@@ -82,7 +80,6 @@ export default async function ProductDetailsPage({
           </span>
         </nav>
 
-        {/* Product identity, today's price, and daily movement */}
         <section
           aria-labelledby="product-name"
           className="grid overflow-hidden rounded-3xl border border-green-100 bg-white shadow-sm shadow-green-950/5 lg:grid-cols-[1fr_0.8fr]"
@@ -156,7 +153,6 @@ export default async function ProductDetailsPage({
           </div>
         </section>
 
-        {/* Lowest, highest, and previous-month price summaries */}
         <section aria-labelledby="price-summary-heading" className="mt-8 sm:mt-10">
           <h2
             id="price-summary-heading"
@@ -208,7 +204,6 @@ export default async function ProductDetailsPage({
           </div>
         </section>
 
-        {/* Market price ranges with a horizontally scrollable mobile table */}
         <section
           aria-labelledby="market-prices-heading"
           className="mt-8 sm:mt-10"

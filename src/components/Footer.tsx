@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { TrendingUp } from "lucide-react";
 
-// Shared brand, pricing disclaimer, and copyright footer.
 const Footer = () => {
   return (
     <footer className="border-t border-emerald-100 bg-[#fbfdf9]">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-          {/* Brand */}
           <Link
             href="/"
             aria-label="বাজার দর - হোম"
@@ -27,14 +25,12 @@ const Footer = () => {
             </span>
           </Link>
 
-          {/* Price disclaimer */}
           <p className="max-w-lg text-left text-xs leading-6 text-gray-500 sm:text-right sm:text-sm">
             <span className="font-semibold text-emerald-800">দ্রষ্টব্য:</span>{" "}
             সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
           </p>
         </div>
 
-        {/* Bottom line */}
         <div className="mt-6 border-t border-emerald-100 pt-4">
           <p className="text-center text-xs text-gray-400">
             © {new Date().getFullYear()} বাজার দর। সর্বস্বত্ব সংরক্ষিত।

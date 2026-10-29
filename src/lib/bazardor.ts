@@ -7,7 +7,6 @@ import {
   type ProductDetail,
 } from "@/lib/bazardor-types";
 
-// Validate each API item before passing external data into typed UI components.
 function isProduct(value: unknown): value is Product {
   if (typeof value !== "object" || value === null) {
     return false;
@@ -52,7 +51,6 @@ async function fetchProducts(url: string | URL): Promise<Product[]> {
   return data;
 }
 
-// Fetch category details; a 404 represents an invalid category slug.
 export async function getCategoryBySlug(
   slug: string,
 ): Promise<Category | null> {
@@ -77,7 +75,6 @@ export async function getCategoryBySlug(
   return data;
 }
 
-// Fetch and validate only products assigned to the requested category.
 export async function getProductsByCategory(
   slug: string,
 ): Promise<Product[]> {
@@ -87,12 +84,10 @@ export async function getProductsByCategory(
   return fetchProducts(url);
 }
 
-// Shared full catalog fetch for the homepage and price movement sections.
 export async function getAllProducts(): Promise<Product[]> {
   return fetchProducts(`${BAZARDOR_API_URL}/products`);
 }
 
-// Fetch a single product by its numeric API id or return null when missing.
 export async function getProductById(
   id: string,
 ): Promise<ProductDetail | null> {

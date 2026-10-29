@@ -10,12 +10,10 @@ import {
 const LoadingPage = () => {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f7faf7] px-4 py-8 sm:px-6 lg:px-8">
-      {/* Background decoration */}
       <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-green-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-lime-100/50 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl">
-        {/* Minimal brand header */}
         <header className="flex items-center justify-between border-b border-green-100 pb-5">
           <Link href="/" className="group flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-green-700 text-white shadow-md shadow-green-900/10 transition-transform group-hover:scale-105">
@@ -43,14 +41,12 @@ const LoadingPage = () => {
           </div>
         </header>
 
-        {/* Main loading experience */}
         <section
           aria-busy="true"
           aria-label="পেজ লোড হচ্ছে"
           className="py-12 sm:py-16 lg:py-20"
         >
           <div className="mx-auto max-w-xl text-center">
-            {/* Animated basket */}
             <div className="relative mx-auto mb-8 flex h-32 w-32 items-center justify-center sm:h-36 sm:w-36">
               <div className="absolute inset-0 animate-ping rounded-full bg-green-200/40 [animation-duration:2.5s]" />
               <div className="absolute inset-2 rounded-full border border-dashed border-green-300 animate-[spin_12s_linear_infinite]" />
@@ -90,7 +86,6 @@ const LoadingPage = () => {
               Getting everything ready for you.
             </p>
 
-            {/* Animated loading bar */}
             <div
               role="progressbar"
               aria-label="লোড হচ্ছে"
@@ -104,7 +99,6 @@ const LoadingPage = () => {
             </p>
           </div>
 
-          {/* Skeleton content preview */}
           <div className="mx-auto mt-14 max-w-4xl sm:mt-16">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div className="h-5 w-36 animate-pulse rounded-md bg-gray-200/80" />
@@ -138,7 +132,6 @@ const LoadingPage = () => {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="border-t border-green-100 py-5">
           <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
             <p className="text-xs text-gray-400">
@@ -158,7 +151,6 @@ const LoadingPage = () => {
         </footer>
       </div>
 
-      {/* Custom progress animation */}
       <style>{`
         @keyframes loading {
           0% {

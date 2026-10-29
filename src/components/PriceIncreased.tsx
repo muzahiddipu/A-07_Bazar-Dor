@@ -2,7 +2,6 @@ import { ArrowUp } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/lib/bazardor";
 
-// Shows the six products with the largest price increases.
 const PriceIncreased = async () => {
   const products = await getAllProducts();
   const increasedProducts = products
@@ -15,7 +14,6 @@ const PriceIncreased = async () => {
       aria-labelledby="price-increased-heading"
       className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
     >
-      {/* Section title and trend icon */}
       <div className="mb-5 sm:mb-7">
         <h2
           id="price-increased-heading"
@@ -28,7 +26,6 @@ const PriceIncreased = async () => {
         </h2>
       </div>
 
-      {/* Shared clickable cards keep visuals and hover behavior consistent */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {increasedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />

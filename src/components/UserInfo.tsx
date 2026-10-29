@@ -27,7 +27,6 @@ const UserInfo = () => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click or Escape.
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -53,15 +52,12 @@ const UserInfo = () => {
     };
   }, []);
 
-  // Reset the image error if the profile picture changes.
   useEffect(() => {
     setImageError(false);
   }, [user?.image]);
 
-  // First letter of the user's name.
   const userInitial = user?.name?.trim().charAt(0).toUpperCase() || "U";
 
-  // Use the original image, never a generated avatar.
   const avatarSrc =
     typeof user?.image === "string" && user.image.trim() !== "" && !imageError
       ? user.image
@@ -88,7 +84,6 @@ const UserInfo = () => {
     }
   };
 
-  // Reusable avatar display.
   const renderAvatar = (size: "small" | "large") => {
     const dimensions =
       size === "small" ? "h-10 w-10 sm:h-11 sm:w-11" : "h-12 w-12";
@@ -124,11 +119,9 @@ const UserInfo = () => {
     );
   };
 
-  // Logged-in user interface.
   if (user) {
     return (
       <div className="relative" ref={dropdownRef}>
-        {/* Avatar and name */}
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
@@ -155,13 +148,11 @@ const UserInfo = () => {
           </span>
         </button>
 
-        {/* Profile dropdown */}
         {isOpen && (
           <div
             role="menu"
             className="absolute right-0 top-full z-[60] mt-3 w-[min(20rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-green-100 bg-white shadow-xl shadow-green-950/10 animate-in fade-in slide-in-from-top-2 duration-200"
           >
-            {/* User information */}
             <div className="border-b border-green-100 bg-gradient-to-br from-green-50 via-white to-emerald-50/70 p-4">
               <div className="flex items-center gap-3">
                 <div className="overflow-hidden rounded-xl ring-2 ring-white shadow-sm">
@@ -188,7 +179,6 @@ const UserInfo = () => {
               </div>
             </div>
 
-            {/* Menu items */}
             <div className="space-y-1 p-2">
               <Link
                 href="/userProfile"
@@ -224,7 +214,6 @@ const UserInfo = () => {
               </button>
             </div>
 
-            {/* Footer */}
             <div className="border-t border-gray-100 bg-gray-50/70 px-4 py-3">
               <p className="text-center text-[11px] font-medium text-gray-400">
                 আপনার প্রতিদিনের বাজার · বাজার দর
@@ -236,10 +225,8 @@ const UserInfo = () => {
     );
   }
 
-  // Logged-out user interface.
   return (
     <>
-      {/* Desktop authentication */}
       <div className="hidden shrink-0 items-center gap-2.5 sm:flex">
         <Link
           href="/signIn"
@@ -258,7 +245,6 @@ const UserInfo = () => {
         </Link>
       </div>
 
-      {/* Mobile authentication */}
       <div className="grid grid-cols-2 gap-3 sm:hidden">
         <Link
           href="/signIn"

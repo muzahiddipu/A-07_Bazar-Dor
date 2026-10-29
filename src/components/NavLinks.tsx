@@ -9,7 +9,6 @@ import {
   type Category,
 } from "@/lib/bazardor-types";
 
-// Loads categories and renders the horizontally scrollable route navigation.
 const NavLinks = () => {
   const pathname = usePathname();
   const [categories, setCategories] = useState<Category[]>([]);

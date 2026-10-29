@@ -16,7 +16,6 @@ const unitLabels: Record<string, string> = {
   dozen: "ডজন",
 };
 
-// Animates a duplicated product list to create a seamless, readable ticker.
 const MarqueeTrack = ({ products }: { products: Product[] }) => {
   return (
     <div className="relative flex min-w-0 flex-1 items-center overflow-hidden bg-white">

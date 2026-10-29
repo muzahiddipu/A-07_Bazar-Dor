@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-// Route-level recovery UI for product API and rendering failures.
 export default function ProductError({
   error,
   retry,

@@ -1,4 +1,3 @@
-// Here is the main part of the web application. Everything will be rendared form here
 import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
@@ -13,7 +12,6 @@ const hindSiliguri = Hind_Siliguri({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-// Shared metadata, Bengali font, site navigation, ticker, and page landmarks.
 export const metadata: Metadata = {
   title: "বাজার দর | প্রতিদিনের বাজারদর",
   description: "বাংলাদেশের নিত্যপ্রয়োজনীয় পণ্যের বাজারভিত্তিক আজকের দাম।",
@@ -27,7 +25,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={` ${hindSiliguri.className} h-full antialiased`}
     >
       <body className=" min-h-full flex flex-col">
-        {/* React hot toast */}
         <Toaster
           position="top-right"
           reverseOrder={false}
@@ -91,13 +88,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
 
-        {/* Global site navigation */}
         <Header>
           <NavLinks />
         </Header>
-        {/* Current product price ticker */}
         <Marquee></Marquee>
-        {/* Each route renders its page content inside the main landmark */}
         <main className="flex-1">{children}</main>
         <Footer></Footer>
       </body>

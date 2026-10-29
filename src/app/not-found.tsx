@@ -13,20 +13,16 @@ import {
 export default function NotFoundPage() {
   return (
     <main className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-[#f7faf7] px-4 py-12 sm:px-6 lg:px-8">
-      {/* Background decoration */}
       <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-green-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-lime-100/50 blur-3xl" />
 
       <div className="relative mx-auto w-full max-w-5xl">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Illustration */}
           <div className="relative order-1 flex items-center justify-center lg:order-2">
             <div className="relative flex aspect-square w-full max-w-[390px] items-center justify-center">
-              {/* Decorative circles */}
               <div className="absolute inset-[8%] rounded-full border border-dashed border-green-300" />
               <div className="absolute inset-[17%] rounded-full bg-green-100/70" />
 
-              {/* Floating label */}
               <div className="absolute right-0 top-[15%] z-10 flex items-center gap-2 rounded-2xl border border-green-100 bg-white px-3 py-2.5 shadow-lg shadow-green-900/5 sm:right-2">
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-green-100 text-green-700">
                   <Search size={17} />
@@ -39,7 +35,6 @@ export default function NotFoundPage() {
                 </div>
               </div>
 
-              {/* Main basket illustration */}
               <div className="relative z-10 flex h-48 w-48 items-center justify-center rounded-[2.5rem] bg-gradient-to-br from-green-600 to-emerald-800 shadow-2xl shadow-green-900/20 sm:h-56 sm:w-56 sm:rounded-[3rem]">
                 <div className="absolute inset-2 rounded-[2rem] border border-white/15 sm:rounded-[2.5rem]" />
                 <ShoppingBasket
@@ -56,7 +51,6 @@ export default function NotFoundPage() {
                 </span>
               </div>
 
-              {/* Floating decorative elements */}
               <span className="absolute left-[10%] top-[25%] h-4 w-4 rounded-full bg-lime-400" />
               <span className="absolute bottom-[18%] right-[12%] h-3 w-3 rounded-full bg-green-400" />
               <span className="absolute bottom-[12%] left-[24%] h-2.5 w-2.5 rounded-full bg-emerald-300" />
@@ -67,7 +61,6 @@ export default function NotFoundPage() {
             </div>
           </div>
 
-          {/* Content */}
           <div className="order-2 text-center lg:order-1 lg:text-left">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-3.5 py-2 text-xs font-bold tracking-wide text-green-800">
               <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
@@ -88,7 +81,6 @@ export default function NotFoundPage() {
               </span>
             </p>
 
-            {/* Actions */}
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
               <Link
                 href="/"
@@ -111,7 +103,6 @@ export default function NotFoundPage() {
               </Link>
             </div>
 
-            {/* Helpful navigation */}
             <div className="mt-10 border-t border-gray-200 pt-6">
               <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
                 আপনি যা করতে পারেন
@@ -138,7 +129,6 @@ export default function NotFoundPage() {
           </div>
         </div>
 
-        {/* Footer note */}
         <div className="mt-12 text-center">
           <p className="text-xs text-gray-400">
             <span className="font-bold text-green-700">বাজার-দর</span> —

@@ -136,7 +136,6 @@ const SignUpPage = () => {
   return (
     <section className="min-h-screen bg-[#f1f5ef] px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto w-full max-w-4xl">
-        {/* Header */}
         <header className="mb-8 text-center sm:mb-10">
           <h1 className="text-3xl font-extrabold tracking-tight text-[#202b22] sm:text-4xl md:text-5xl">
             অ্যাকাউন্ট তৈরি করুন
@@ -147,10 +146,8 @@ const SignUpPage = () => {
           </p>
         </header>
 
-        {/* Sign Up Card */}
         <section className="rounded-[1.75rem] border border-[#dce6dc] bg-white/85 p-5 shadow-[0_12px_45px_-30px_rgba(22,101,52,0.18)] sm:rounded-[2rem] sm:p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
-            {/* Name */}
             <div>
               <label
                 htmlFor="name"
@@ -178,7 +175,6 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -206,7 +202,6 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -251,7 +246,6 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* Confirm Password */}
             <div>
               <label
                 htmlFor="confirmPassword"
@@ -298,7 +292,6 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={isSubmitting || isSocialSigningIn}
@@ -318,7 +311,6 @@ const SignUpPage = () => {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="my-7 flex items-center gap-4 sm:my-8">
             <div className="h-px flex-1 bg-[#dfe6df]" />
 
@@ -329,7 +321,6 @@ const SignUpPage = () => {
             <div className="h-px flex-1 bg-[#dfe6df]" />
           </div>
 
-          {/* Social Signup */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
               type="button"
@@ -381,7 +372,6 @@ const SignUpPage = () => {
             </button>
           </div>
 
-          {/* Sign In Link */}
           <p className="mt-7 text-center text-sm text-[#39453b] sm:text-base md:text-lg">
             অ্যাকাউন্ট আছে?{" "}
             <Link
@@ -393,7 +383,6 @@ const SignUpPage = () => {
           </p>
         </section>
 
-        {/* Back to Home */}
         <div className="mt-7 text-center sm:mt-9">
           <Link
             href="/"

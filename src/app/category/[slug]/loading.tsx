@@ -1,4 +1,3 @@
-// Skeleton shown while category metadata and products are loading.
 export default function CategoryLoading() {
   return (
     <section

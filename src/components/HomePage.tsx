@@ -11,7 +11,6 @@ import {
 
 import heroImg from "../assets/bazar-hero.png";
 
-// Homepage introduction with the primary catalog and category navigation links.
 const HomePage = () => {
   const date = new Intl.DateTimeFormat("bn-BD", {
     dateStyle: "full",
@@ -20,7 +19,6 @@ const HomePage = () => {
 
   return (
     <section className="relative isolate overflow-hidden bg-[#fbfdf9]">
-      {/* Background decoration */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
@@ -32,16 +30,13 @@ const HomePage = () => {
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="relative overflow-hidden rounded-[2rem] border border-emerald-900/[0.07] bg-white/85 shadow-[0_32px_100px_-50px_rgba(22,101,52,0.28)] backdrop-blur-sm sm:rounded-[2.5rem]">
-          {/* Top accent */}
           <div
             aria-hidden="true"
             className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-800 via-green-500 to-lime-400"
           />
 
           <div className="grid items-center gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-4 lg:px-16 lg:py-16 xl:px-20 xl:py-20">
-            {/* Content */}
             <div className="relative z-10">
-              {/* Date badge */}
               <div className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-emerald-100 bg-emerald-50/80 px-3.5 py-2 text-xs font-semibold text-emerald-900 sm:text-sm">
                 <CalendarDays
                   aria-hidden="true"
@@ -50,7 +45,6 @@ const HomePage = () => {
                 <span>{date}</span>
               </div>
 
-              {/* Headline */}
               <h1 className="mt-7 max-w-2xl text-[2rem] font-extrabold leading-[1.3] tracking-tight text-gray-950 sm:mt-8 sm:text-5xl sm:leading-[1.25] lg:text-[3.5rem]">
                 প্রতিদিনের বাজারদর,
                 <span className="relative mt-1 block text-emerald-700">
@@ -68,7 +62,6 @@ const HomePage = () => {
                 সিদ্ধান্ত নিন আরও আত্মবিশ্বাসের সঙ্গে।
               </p>
 
-              {/* Feature highlights */}
               <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3">
                 <span className="inline-flex items-center gap-2 text-xs font-medium text-gray-600 sm:text-sm">
                   <MapPin
@@ -95,7 +88,6 @@ const HomePage = () => {
                 </span>
               </div>
 
-              {/* Catalog and category anchors target existing homepage sections */}
               <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
                 <Link
                   href="#all-products"
@@ -122,9 +114,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            {/* Illustration */}
             <div className="relative mx-auto flex min-h-[290px] w-full max-w-md items-center justify-center sm:min-h-[380px] lg:min-h-[450px]">
-              {/* Illustration backdrop */}
               <div
                 aria-hidden="true"
                 className="absolute h-[78%] w-[78%] rounded-full bg-gradient-to-br from-emerald-100 via-green-50 to-lime-50"
@@ -135,7 +125,6 @@ const HomePage = () => {
                 className="absolute h-[88%] w-[88%] rounded-full border border-dashed border-emerald-200/80"
               />
 
-              {/* Floating card: price information */}
               <div className="absolute left-0 top-[17%] z-20 rounded-2xl border border-white/90 bg-white/95 px-3.5 py-3 shadow-[0_12px_35px_-15px_rgba(22,101,52,0.25)] backdrop-blur-md sm:left-1 sm:px-4 sm:py-3.5">
                 <div className="flex items-center gap-2">
                   <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50">
@@ -155,7 +144,6 @@ const HomePage = () => {
                 </div>
               </div>
 
-              {/* Main image */}
               <div className="relative z-10 w-[76%] transition-transform duration-500 ease-out hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:transform-none">
                 <Image
                   src={heroImg}
@@ -166,7 +154,6 @@ const HomePage = () => {
                 />
               </div>
 
-              {/* Floating location card */}
               <div className="absolute bottom-[13%] right-0 z-20 flex items-center gap-2.5 rounded-2xl border border-white bg-white/95 px-3.5 py-3 shadow-[0_12px_35px_-15px_rgba(22,101,52,0.25)] backdrop-blur-md sm:right-1 sm:px-4 sm:py-3.5">
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime-100">
                   <MapPin
@@ -184,7 +171,6 @@ const HomePage = () => {
                 </div>
               </div>
 
-              {/* Decorative dots */}
               <span
                 aria-hidden="true"
                 className="absolute right-[13%] top-[15%] h-3 w-3 rounded-full bg-lime-400 ring-4 ring-lime-100/70"

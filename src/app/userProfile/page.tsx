@@ -25,7 +25,6 @@ const UserProfilePage = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // Populate the input when the user's session becomes available.
   useEffect(() => {
     if (user?.name) {
       setName(user.name);
@@ -134,7 +133,6 @@ const UserProfilePage = () => {
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-3xl">
-        {/* Page heading */}
         <header className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
             আমার প্রোফাইল
@@ -144,7 +142,6 @@ const UserProfilePage = () => {
           </p>
         </header>
 
-        {/* Profile summary card */}
         <section className="mb-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex min-w-0 items-center gap-4">
@@ -194,7 +191,6 @@ const UserProfilePage = () => {
           </div>
         </section>
 
-        {/* Profile update card */}
         <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
           <div className="mb-6 border-b border-gray-100 pb-4">
             <h2 className="text-lg font-bold text-gray-900">তথ্য</h2>
@@ -203,7 +199,6 @@ const UserProfilePage = () => {
             </p>
           </div>
 
-          {/* Feedback messages */}
           {message && (
             <div
               role="status"

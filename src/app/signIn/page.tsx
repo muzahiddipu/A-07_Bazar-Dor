@@ -106,7 +106,6 @@ export default function SignInPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-[#f0f5f0] px-4 py-10 text-[#202a22] sm:px-6">
       <div className="w-full max-w-5xl">
-        {/* Page heading */}
         <header className="mb-10 text-center sm:mb-12">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
             সাইন ইন
@@ -117,10 +116,8 @@ export default function SignInPage() {
           </p>
         </header>
 
-        {/* Sign-in card */}
         <section className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#dfe8df] bg-[#fbfdfb] p-6 shadow-sm sm:p-10 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-7">
-            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -149,7 +146,6 @@ export default function SignInPage() {
               </div>
             </div>
 
-            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -199,7 +195,6 @@ export default function SignInPage() {
               </div>
             </div>
 
-            {/* Submit button */}
             <button
               type="submit"
               disabled={isLoading}
@@ -209,7 +204,6 @@ export default function SignInPage() {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="my-8 flex items-center gap-4 sm:my-10">
             <div className="h-[2px] flex-1 bg-[#e2e8e2]" />
 
@@ -220,7 +214,6 @@ export default function SignInPage() {
             <div className="h-[2px] flex-1 bg-[#e2e8e2]" />
           </div>
 
-          {/* Social sign-in */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
             <button
               type="button"
@@ -272,7 +265,6 @@ export default function SignInPage() {
             </button>
           </div>
 
-          {/* Sign-up link */}
           <p className="mt-8 text-center text-base leading-relaxed sm:mt-10 sm:text-xl">
             অ্যাকাউন্ট নেই?{" "}
             <Link
@@ -284,7 +276,6 @@ export default function SignInPage() {
           </p>
         </section>
 
-        {/* Back to home */}
         <div className="mt-8 text-center sm:mt-10">
           <Link
             href="/"

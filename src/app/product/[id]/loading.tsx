@@ -1,4 +1,3 @@
-// Product-detail skeleton shown during server navigation.
 export default function ProductDetailsLoading() {
   return (
     <section

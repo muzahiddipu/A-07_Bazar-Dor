@@ -6,7 +6,6 @@ import { Menu, X, ShoppingCart, CalendarDays } from "lucide-react";
 
 import UserInfo from "./UserInfo";
 
-// Sticky brand, authentication actions, and the category navigation slot.
 const Header = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,15 +16,12 @@ const Header = ({ children }: { children: ReactNode }) => {
   return (
     <header className="sticky top-0 z-50 border-b border-green-100/80 bg-white/95 shadow-sm backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Main Navbar */}
         <div className="flex min-h-[88px] items-center justify-between gap-3 py-3 sm:gap-5">
-          {/* Logo and Brand */}
           <Link
             href="/"
             className="group flex min-w-0 items-center gap-3 sm:gap-4"
             aria-label="বাজার দর হোম"
           >
-            {/* Shopping Cart Icon */}
             <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-green-600 to-green-800 text-white shadow-md shadow-green-800/15 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg group-hover:shadow-green-800/20 sm:h-14 sm:w-14">
               <ShoppingCart
                 size={29}
@@ -35,13 +31,11 @@ const Header = ({ children }: { children: ReactNode }) => {
               <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-white bg-emerald-300" />
             </div>
 
-            {/* Brand Name and Date */}
             <div className="min-w-0">
               <span className="text-xl font-extrabold leading-tight tracking-tight text-green-900 transition-colors group-hover:text-green-700 sm:text-2xl md:text-3xl">
                 বাজার দর
               </span>
 
-              {/* Date stays directly below the brand name */}
               <div className="mt-2 flex min-w-0 items-center gap-1.5">
                 <CalendarDays
                   size={13}
@@ -55,7 +49,6 @@ const Header = ({ children }: { children: ReactNode }) => {
             </div>
           </Link>
 
-          {/* Desktop Tagline */}
           <div className="hidden flex-1 justify-center lg:flex">
             <div className="flex items-center gap-3 rounded-2xl border border-green-100 bg-gradient-to-r from-green-50/70 to-emerald-50/40 px-5 py-3">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-green-700 shadow-sm">
@@ -73,12 +66,10 @@ const Header = ({ children }: { children: ReactNode }) => {
             </div>
           </div>
 
-          {/* Desktop Authentication */}
           <div className="hidden sm:block">
             <UserInfo />
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             type="button"
             onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -91,7 +82,6 @@ const Header = ({ children }: { children: ReactNode }) => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div
             id="mobile-menu"
@@ -104,7 +94,6 @@ const Header = ({ children }: { children: ReactNode }) => {
               </div>
             </div>
 
-            {/* Mobile Authentication */}
             <div onClick={() => setIsMenuOpen(false)}>
               <UserInfo />
             </div>
@@ -112,7 +101,6 @@ const Header = ({ children }: { children: ReactNode }) => {
         )}
       </div>
 
-      {/* Brand Accent */}
       <div className="h-0.5 bg-gradient-to-r from-emerald-200 via-green-600 to-emerald-300" />
 
       {children}

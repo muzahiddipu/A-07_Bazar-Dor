@@ -2,7 +2,6 @@ import { ArrowDown } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/lib/bazardor";
 
-// Shows the six products with the largest price decreases.
 const PriceDecreased = async () => {
   const products = await getAllProducts();
   const decreasedProducts = products
@@ -18,7 +17,6 @@ const PriceDecreased = async () => {
       aria-labelledby="price-decreased-heading"
       className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
     >
-      {/* Section title and trend icon */}
       <div className="mb-5 sm:mb-7">
         <h2
           id="price-decreased-heading"
@@ -31,7 +29,6 @@ const PriceDecreased = async () => {
         </h2>
       </div>
 
-      {/* Shared clickable cards keep visuals and hover behavior consistent */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {decreasedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />

@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-// Route-level recovery UI for category API and rendering failures.
 export default function CategoryError({
   error,
   retry,

@@ -6,7 +6,6 @@ import type { Product } from "@/lib/bazardor-types";
 
 type SortOrder = "default" | "price-asc" | "price-desc";
 
-// Adds interactive numeric-price sorting to the server-fetched category products.
 const CategoryProducts = ({ products }: { products: Product[] }) => {
   const [sortOrder, setSortOrder] = useState<SortOrder>("default");
 
@@ -24,7 +23,6 @@ const CategoryProducts = ({ products }: { products: Product[] }) => {
 
   return (
     <div className="mt-6 sm:mt-8">
-      {/* Product count and sort control */}
       <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-medium text-gray-600">
           মোট{" "}
@@ -63,7 +61,6 @@ const CategoryProducts = ({ products }: { products: Product[] }) => {
         </div>
       </div>
 
-      {/* Sorted products retain the shared card appearance and behavior */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {sortedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
