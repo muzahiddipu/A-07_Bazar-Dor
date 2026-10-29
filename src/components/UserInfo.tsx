@@ -14,6 +14,7 @@ import {
   Check,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const UserInfo = () => {
   const { data: session } = authClient.useSession();
@@ -26,7 +27,7 @@ const UserInfo = () => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close the dropdown when clicking outside.
+  // Close dropdown on outside click or Escape.
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -52,63 +53,92 @@ const UserInfo = () => {
     };
   }, []);
 
-  // Generate a consistent avatar when the user has no profile photo.
-  const avatarSeed = encodeURIComponent(
-    user?.id || user?.name || user?.email || "bazar-dor-user",
-  );
-
-  const fallbackAvatar = `https://api.dicebear.com/9.x/avataaars/svg?seed=${avatarSeed}`;
-
-  const avatarSrc = user?.image && !imageError ? user.image : fallbackAvatar;
-
-  // Reset image error when the user's profile photo changes.
+  // Reset the image error if the profile picture changes.
   useEffect(() => {
     setImageError(false);
   }, [user?.image]);
+
+  // First letter of the user's name.
+  const userInitial = user?.name?.trim().charAt(0).toUpperCase() || "U";
+
+  // Use the original image, never a generated avatar.
+  const avatarSrc =
+    typeof user?.image === "string" && user.image.trim() !== "" && !imageError
+      ? user.image
+      : null;
 
   const handleSignOut = async () => {
     setIsSigningOut(true);
 
     try {
-      await authClient.signOut({
-        fetchOptions: {
-          onSuccess: () => {
-            setIsOpen(false);
-            router.replace("/");
-            router.refresh();
-          },
-        },
-      });
+      const result = await authClient.signOut();
+
+      if (result.error) {
+        console.error("Sign out failed:", result.error);
+        setIsSigningOut(false);
+        return;
+      }
+
+      setIsOpen(false);
+      router.replace("/");
+      router.refresh();
     } catch (error) {
       console.error("Sign out failed:", error);
       setIsSigningOut(false);
     }
   };
 
+  // Reusable avatar display.
+  const renderAvatar = (size: "small" | "large") => {
+    const dimensions =
+      size === "small" ? "h-10 w-10 sm:h-11 sm:w-11" : "h-12 w-12";
+
+    return (
+      <div
+        className={`flex ${dimensions} shrink-0 items-center justify-center overflow-hidden rounded-xl bg-green-100`}
+      >
+        {avatarSrc ? (
+          <Image
+            key={avatarSrc}
+            src={avatarSrc}
+            alt={
+              size === "small" ? `${user?.name || "User"} এর প্রোফাইল ছবি` : ""
+            }
+            width={size === "small" ? 44 : 48}
+            height={size === "small" ? 44 : 48}
+            referrerPolicy="no-referrer"
+            onError={() => setImageError(true)}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <span
+            aria-label={`প্রোফাইল: ${userInitial}`}
+            className={`font-bold text-green-800 ${
+              size === "small" ? "text-lg" : "text-xl"
+            }`}
+          >
+            {userInitial}
+          </span>
+        )}
+      </div>
+    );
+  };
+
   // Logged-in user interface.
   if (user) {
     return (
       <div className="relative" ref={dropdownRef}>
-        {/* User Avatar and Name */}
+        {/* Avatar and name */}
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
           aria-haspopup="menu"
           aria-label="ইউজার মেনু খুলুন"
-          className="group flex max-w-full items-center gap-2 rounded-2xl border border-green-100 bg-white p-1.5 pr-3 shadow-sm transition duration-200 hover:border-green-300 hover:bg-green-50/70 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 sm:gap-3 sm:p-1.5 sm:pr-3"
+          className="group flex max-w-full items-center gap-2 rounded-2xl border border-green-100 bg-white p-1.5 pr-3 shadow-sm transition duration-200 hover:border-green-300 hover:bg-green-50/70 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 sm:gap-3"
         >
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-green-100 ring-2 ring-green-100 transition group-hover:ring-green-200 sm:h-11 sm:w-11">
-            <img
-              src={avatarSrc}
-              alt={`${user.name || "User"} এর প্রোফাইল ছবি`}
-              onError={() => {
-                if (!imageError) {
-                  setImageError(true);
-                }
-              }}
-              className="h-full w-full object-cover"
-            />
+          <div className="overflow-hidden rounded-xl ring-2 ring-green-100 transition group-hover:ring-green-200">
+            {renderAvatar("small")}
           </div>
 
           <div className="hidden min-w-0 text-left sm:block">
@@ -125,26 +155,17 @@ const UserInfo = () => {
           </span>
         </button>
 
-        {/* Profile Dropdown */}
+        {/* Profile dropdown */}
         {isOpen && (
           <div
             role="menu"
             className="absolute right-0 top-full z-[60] mt-3 w-[min(20rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-green-100 bg-white shadow-xl shadow-green-950/10 animate-in fade-in slide-in-from-top-2 duration-200"
           >
-            {/* User Information */}
+            {/* User information */}
             <div className="border-b border-green-100 bg-gradient-to-br from-green-50 via-white to-emerald-50/70 p-4">
               <div className="flex items-center gap-3">
-                <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-green-100 ring-2 ring-white shadow-sm">
-                  <img
-                    src={avatarSrc}
-                    alt=""
-                    onError={() => {
-                      if (!imageError) {
-                        setImageError(true);
-                      }
-                    }}
-                    className="h-full w-full object-cover"
-                  />
+                <div className="overflow-hidden rounded-xl ring-2 ring-white shadow-sm">
+                  {renderAvatar("large")}
                 </div>
 
                 <div className="min-w-0 flex-1">
@@ -167,10 +188,10 @@ const UserInfo = () => {
               </div>
             </div>
 
-            {/* Dropdown Menu Items */}
+            {/* Menu items */}
             <div className="space-y-1 p-2">
               <Link
-                href="/profile"
+                href="/userProfile"
                 role="menuitem"
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 transition hover:bg-green-50 hover:text-green-800 focus-visible:bg-green-50 focus-visible:outline-none"
@@ -203,7 +224,7 @@ const UserInfo = () => {
               </button>
             </div>
 
-            {/* Dropdown Footer */}
+            {/* Footer */}
             <div className="border-t border-gray-100 bg-gray-50/70 px-4 py-3">
               <p className="text-center text-[11px] font-medium text-gray-400">
                 আপনার প্রতিদিনের বাজার · বাজার দর
@@ -218,7 +239,7 @@ const UserInfo = () => {
   // Logged-out user interface.
   return (
     <>
-      {/* Desktop Authentication */}
+      {/* Desktop authentication */}
       <div className="hidden shrink-0 items-center gap-2.5 sm:flex">
         <Link
           href="/signIn"
@@ -237,7 +258,7 @@ const UserInfo = () => {
         </Link>
       </div>
 
-      {/* Mobile Authentication */}
+      {/* Mobile authentication */}
       <div className="grid grid-cols-2 gap-3 sm:hidden">
         <Link
           href="/signIn"

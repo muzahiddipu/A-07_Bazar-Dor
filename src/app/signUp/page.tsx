@@ -21,11 +21,12 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSocialSigningIn, setIsSocialSigningIn] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
+    if (isSubmitting || isSocialSigningIn) return;
 
     const formData = new FormData(e.currentTarget);
 
@@ -89,6 +90,49 @@ const SignUpPage = () => {
     }
   };
 
+  const handleSocialSignIn = async (provider: "google" | "github") => {
+    if (isSubmitting || isSocialSigningIn) return;
+
+    setIsSocialSigningIn(true);
+    const providerName = provider === "google" ? "Google" : "GitHub";
+    const toastId = toast.loading(`${providerName} দিয়ে সাইন ইন হচ্ছে...`);
+
+    try {
+      const { error } = await authClient.signIn.social({
+        provider,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.error(error.message || "সাইন ইন করা যায়নি। আবার চেষ্টা করুন।", {
+          id: toastId,
+        });
+        return;
+      }
+
+      toast.dismiss(toastId);
+    } catch (error) {
+      console.error(`${providerName} sign-in error:`, error);
+
+      const status =
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        typeof error.status === "number"
+          ? error.status
+          : undefined;
+
+      toast.error(
+        status
+          ? `${providerName} sign-in শুরু করা যায়নি (HTTP ${status})।`
+          : `${providerName} সার্ভারের সাথে সংযোগ করা যায়নি। আবার চেষ্টা করুন।`,
+        { id: toastId },
+      );
+    } finally {
+      setIsSocialSigningIn(false);
+    }
+  };
+
   return (
     <section className="min-h-screen bg-[#f1f5ef] px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto w-full max-w-4xl">
@@ -128,7 +172,7 @@ const SignUpPage = () => {
                   autoComplete="name"
                   placeholder="যেমন: রহিম উদ্দিন"
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isSocialSigningIn}
                   className="h-14 w-full rounded-xl border border-[#dce6dc] bg-[#fcfdfb] pl-12 pr-4 text-base text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-emerald-300 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 disabled:opacity-60 sm:text-lg"
                 />
               </div>
@@ -156,7 +200,7 @@ const SignUpPage = () => {
                   autoComplete="email"
                   placeholder="you@example.com"
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isSocialSigningIn}
                   className="h-14 w-full rounded-xl border border-[#dce6dc] bg-[#fcfdfb] pl-12 pr-4 text-base text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-emerald-300 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 disabled:opacity-60 sm:text-lg"
                 />
               </div>
@@ -185,7 +229,7 @@ const SignUpPage = () => {
                   placeholder="কমপক্ষে ৮ অক্ষর"
                   minLength={8}
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isSocialSigningIn}
                   className="h-14 w-full rounded-xl border border-[#dce6dc] bg-[#fcfdfb] pl-12 pr-12 text-base text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-emerald-300 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 disabled:opacity-60 sm:text-lg"
                 />
 
@@ -230,7 +274,7 @@ const SignUpPage = () => {
                   placeholder="আবার লিখুন"
                   minLength={8}
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isSocialSigningIn}
                   className="h-14 w-full rounded-xl border border-[#dce6dc] bg-[#fcfdfb] pl-12 pr-12 text-base text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-emerald-300 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 disabled:opacity-60 sm:text-lg"
                 />
 
@@ -257,7 +301,7 @@ const SignUpPage = () => {
             {/* Submit */}
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isSocialSigningIn}
               className="group flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#07883f] px-5 text-base font-bold text-white shadow-[0_4px_0_#056b32,0_8px_16px_-8px_rgba(5,107,50,0.45)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#067735] active:translate-y-0 active:shadow-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:h-16 sm:text-xl"
             >
               {isSubmitting ? (
@@ -289,12 +333,9 @@ const SignUpPage = () => {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
               type="button"
-              onClick={() =>
-                toast("Google সাইন আপ শীঘ্রই যুক্ত করা হবে।", {
-                  icon: "ℹ️",
-                })
-              }
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#dce6dc] bg-white px-3 py-3 text-sm font-semibold text-[#263329] transition hover:border-emerald-300 hover:bg-emerald-50/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 sm:min-h-14 sm:text-base"
+              onClick={() => handleSocialSignIn("google")}
+              disabled={isSubmitting || isSocialSigningIn}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#dce6dc] bg-white px-3 py-3 text-sm font-semibold text-[#263329] transition hover:border-emerald-300 hover:bg-emerald-50/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 disabled:cursor-not-allowed disabled:opacity-60 sm:min-h-14 sm:text-base"
             >
               <svg
                 aria-hidden="true"
@@ -324,12 +365,9 @@ const SignUpPage = () => {
 
             <button
               type="button"
-              onClick={() =>
-                toast("GitHub সাইন আপ শীঘ্রই যুক্ত করা হবে।", {
-                  icon: "ℹ️",
-                })
-              }
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#dce6dc] bg-white px-3 py-3 text-sm font-semibold text-[#263329] transition hover:border-emerald-300 hover:bg-emerald-50/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 sm:min-h-14 sm:text-base"
+              onClick={() => handleSocialSignIn("github")}
+              disabled={isSubmitting || isSocialSigningIn}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#dce6dc] bg-white px-3 py-3 text-sm font-semibold text-[#263329] transition hover:border-emerald-300 hover:bg-emerald-50/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 disabled:cursor-not-allowed disabled:opacity-60 sm:min-h-14 sm:text-base"
             >
               <svg
                 aria-hidden="true"

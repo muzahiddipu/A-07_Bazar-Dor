@@ -60,6 +60,7 @@ export default function SignInPage() {
 
   const handleSocialSignIn = async (provider: "google" | "github") => {
     if (isLoading) return;
+    setIsLoading(true);
 
     const loadingToast = toast.loading(
       provider === "google"
@@ -81,9 +82,24 @@ export default function SignInPage() {
     } catch (error) {
       console.error(`${provider} sign-in error:`, error);
 
-      toast.error("সাইন ইন করা যায়নি। আবার চেষ্টা করুন।", {
-        id: loadingToast,
-      });
+      const status =
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        typeof error.status === "number"
+          ? error.status
+          : undefined;
+
+      toast.error(
+        status
+          ? `${provider === "google" ? "Google" : "GitHub"} sign-in শুরু করা যায়নি (HTTP ${status})।`
+          : `${provider === "google" ? "Google" : "GitHub"} সার্ভারের সাথে সংযোগ করা যায়নি। আবার চেষ্টা করুন।`,
+        {
+          id: loadingToast,
+        },
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -209,6 +225,7 @@ export default function SignInPage() {
             <button
               type="button"
               onClick={() => handleSocialSignIn("google")}
+              disabled={isLoading}
               className="flex min-h-14 items-center justify-center gap-3 rounded-2xl border-2 border-[#e0e8e0] px-3 py-4 text-base font-semibold transition hover:bg-[#f2f7f2] disabled:opacity-60 sm:min-h-[72px] sm:text-lg"
             >
               <svg
@@ -240,6 +257,7 @@ export default function SignInPage() {
             <button
               type="button"
               onClick={() => handleSocialSignIn("github")}
+              disabled={isLoading}
               className="flex min-h-14 items-center justify-center gap-3 rounded-2xl border-2 border-[#e0e8e0] px-3 py-4 text-base font-semibold transition hover:bg-[#f2f7f2] disabled:opacity-60 sm:min-h-[72px] sm:text-lg"
             >
               <svg
