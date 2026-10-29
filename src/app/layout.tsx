@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import NavLinks from "@/components/NavLinks";
 import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
+import AuthToast from "@/components/AuthToast";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -29,65 +30,38 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           position="top-right"
           reverseOrder={false}
           toastOptions={{
-            duration: 3000,
-            style: {
-              background: "#fbfdfb",
-              color: "#202a22",
-              border: "1px solid #dfe8df",
-              borderRadius: "16px",
-              padding: "14px 18px",
-              boxShadow: "0 8px 24px rgba(7, 136, 63, 0.10)",
-              fontSize: "14px",
-            },
-            success: {
-              iconTheme: {
-                primary: "#07883f",
-                secondary: "#ffffff",
-              },
-            },
-            error: {
-              iconTheme: {
-                primary: "#dc2626",
-                secondary: "#ffffff",
-              },
-            },
-          }}
-        />
-
-        <Toaster
-          position="top-right"
-          toastOptions={{
             duration: 3500,
             style: {
-              background: "#fbfdfb",
-              color: "#202a22",
-              border: "1px solid #dfe8df",
+              background: "#ecfdf3",
+              color: "#14532d",
+              border: "1px solid #86efac",
               borderRadius: "16px",
               padding: "14px 18px",
-              boxShadow: "0 8px 24px rgba(7, 136, 63, 0.10)",
+              boxShadow: "0 8px 24px rgba(22, 101, 52, 0.14)",
               fontSize: "14px",
             },
             success: {
               iconTheme: {
-                primary: "#07883f",
-                secondary: "#ffffff",
+                primary: "#15803d",
+                secondary: "#ecfdf3",
               },
             },
             error: {
               iconTheme: {
-                primary: "#dc2626",
-                secondary: "#ffffff",
+                primary: "#15803d",
+                secondary: "#ecfdf3",
               },
             },
             loading: {
               iconTheme: {
-                primary: "#07883f",
-                secondary: "#eaf2ea",
+                primary: "#15803d",
+                secondary: "#ecfdf3",
               },
             },
           }}
         />
 
+        <AuthToast />
         <Header>
           <NavLinks />
         </Header>

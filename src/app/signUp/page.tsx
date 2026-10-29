@@ -100,7 +100,8 @@ const SignUpPage = () => {
     try {
       const { error } = await authClient.signIn.social({
         provider,
-        callbackURL: "/",
+        callbackURL: `/?socialAuth=success&provider=${provider}`,
+        errorCallbackURL: `/?socialAuth=error&provider=${provider}`,
       });
 
       if (error) {
